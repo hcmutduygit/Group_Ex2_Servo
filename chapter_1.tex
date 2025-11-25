@@ -51,19 +51,19 @@ Cho một máy khoan cần điều khiển chuyển động theo một quỹ đ�
 \section{Tính toán vận tốc tối đa động cơ cần hoạt động}
 Dựa trên mô tả chuyển động, ta thấy vận tốc nhanh nhất tương ứng với quick return là 120 mm/s. Đó chính là tốc độ tối đa của động cơ.
 \[
-    N_{max} = \frac{60v_L}{p} = \frac{60 \times 0.12}{\frac{5}{1000}} = 1440 \text{ rpm}
+    N_{max} = \dfrac{60v_L}{p} = \dfrac{60 \times 0.12}{\dfrac{5}{1000}} = 1440 \text{ rpm}
 \]
 \section{Tính toán momen quán tính quy về trục động cơ}
 Để tính toán momen quán tính quy về trục động cơ, ta cần tính toán momen quán tính của từng thành phần và quy về trục động cơ thông qua hệ số truyền động.
 \begin{itemize}
     \item Momen quán tính vít me (trục dẫn):
     \[
-        J_{vitme} = \frac{\pi}{32}\rho.L.d^4 = \frac{\pi}{32} \times 7850 \times 0.4 \times 0.02^4 = 4.9 \times 10^{-5} (kg.m^2)
+        J_{vitme} = \dfrac{\pi}{32}\rho.L.d^4 = \dfrac{\pi}{32} \times 7850 \times 0.4 \times 0.02^4 = 4.9 \times 10^{-5} (kg.m^2)
     \]
     
     \item Momen quán tính bàn trượt (di chuyển tuyến tính):
     \[
-        J_{ban\_truot} = m.\left(\frac{p}{2\pi}\right)^2 = 12.\left(\frac{\frac{5}{1000}}{2\pi}\right)^2 = 7.6 \times 10^{-6} (kg.m^2)
+        J_{ban\_truot} = m.\left(\dfrac{p}{2\pi}\right)^2 = 12.\left(\dfrac{\dfrac{5}{1000}}{2\pi}\right)^2 = 7.6 \times 10^{-6} (kg.m^2)
     \]
     
     \item Momen quán tính coupling:
@@ -78,7 +78,7 @@ Dựa trên mô tả chuyển động, ta thấy vận tốc nhanh nhất tươn
 \section{Tính momen tải cho các pha}
 Công thức tính momen tải trục vitme (bỏ qua preload):
     \[
-        T_L = \frac{P}{2\pi} \cdot \frac{F}{\eta}
+        T_L = \dfrac{P}{2\pi} \cdot \dfrac{F}{\eta}
     \]
 Công thức tính giá trị lực tác dụng:
     \[
@@ -91,7 +91,7 @@ Lần lượt tính các giá trị trên cho từng giai đoạn chuyển độ
         \Rightarrow F = F_A + 0.4701 = 0.4701 \text{ (N)}
     \]
     \[
-        \Rightarrow T_L = \frac{5/1000}{2\pi} \cdot \frac{0.4701}{0.9} = 4.16 \times 10^{-4} \text{ Nm}
+        \Rightarrow T_L = \dfrac{5/1000}{2\pi} \cdot \dfrac{0.4701}{0.9} = 4.16 \times 10^{-4} \text{ Nm}
     \]
     
     \item Pha cắt: $F_A = F_c = 200$ N
@@ -99,7 +99,7 @@ Lần lượt tính các giá trị trên cho từng giai đoạn chuyển độ
         \Rightarrow F = F_A + 0.4701 = 200 + 0.4701 = 200.4701 \text{ (N)}
     \]
     \[
-        \Rightarrow T_L = \frac{5/1000}{2\pi} \cdot \frac{200.4701}{0.9} = 0.1773 \text{ Nm}
+        \Rightarrow T_L = \dfrac{5/1000}{2\pi} \cdot \dfrac{200.4701}{0.9} = 0.1773 \text{ Nm}
     \]
 \end{itemize}
 
@@ -112,7 +112,7 @@ Trong đó:
     \item $T_L$ là momen tải trục vitme tính toán ở trên.
     \item $T_a$ là momen tải tăng tốc:
     \[
-        T_a = \frac{(J_L + J_0)N_{max}}{9.55t} = \frac{(6.16 \times 10^{-5} + J_0)N_{max}}{9.55t}
+        T_a = \dfrac{(J_L + J_0)N_{max}}{9.55t} = \dfrac{(6.16 \times 10^{-5} + J_0)N_{max}}{9.55t}
     \]
     
 \end{itemize}
@@ -132,20 +132,20 @@ Tính toán cho các giai đoạn:
 \subsection{Quick feed}
 Thời gian tăng tốc:
 \[
-    t_{a1} = \frac{v_1 - 0}{a} = \frac{0.1 - 0}{2} = 0.05s
+    t_{a1} = \dfrac{v_1 - 0}{a} = \dfrac{0.1 - 0}{2} = 0.05s
 \]
 
 Đoạn đường tăng tốc:
 \[
-    L_{a1} = \frac{v_1^2 - 0^2}{2a} = \frac{0.1^2 - 0}{2 \times 2} = 0.0025m
+    L_{a1} = \dfrac{v_1^2 - 0^2}{2a} = \dfrac{0.1^2 - 0}{2 \times 2} = 0.0025m
 \]
 Thời gian giảm tốc:
 \[
-    t_{d1} = \frac{v_1 - v_2}{a} = \frac{0.1 - 0.02}{2} = 0.04s
+    t_{d1} = \dfrac{v_1 - v_2}{a} = \dfrac{0.1 - 0.02}{2} = 0.04s
 \]
 Đoạn đường giảm tốc:
 \[
-    L_{d1} = \frac{v_2^2 - v_1^2}{2a} = \frac{0.02^2 - 0.1^2}{2 \times 2} = 0.0024m
+    L_{d1} = \dfrac{v_2^2 - v_1^2}{2a} = \dfrac{0.02^2 - 0.1^2}{2 \times 2} = 0.0024m
 \]
 
 Đoạn đường chuyển động đều:
@@ -155,16 +155,16 @@ Thời gian giảm tốc:
 
 Thời gian chuyển động đều:
 \[
-    t_{v1} = \frac{L_{v1}}{v_1} = \frac{0.1451}{0.1} = 1.451 \text{ s}
+    t_{v1} = \dfrac{L_{v1}}{v_1} = \dfrac{0.1451}{0.1} = 1.451 \text{ s}
 \]
 \subsection{Cutting feed}
 Thời gian giảm tốc:
 \[
-    t_{d2} = \frac{v_2 - v_1}{a} = \frac{0.02 - 0}{2} = 0.01s
+    t_{d2} = \dfrac{v_2 - v_1}{a} = \dfrac{0.02 - 0}{2} = 0.01s
 \]
 Đoạn đường giảm tốc:
 \[
-    L_{d2} = \frac{v_1^2 - v_2^2}{2a} = \frac{0^2 - 0.02^2}{2 \times 2} = 0.0001m
+    L_{d2} = \dfrac{v_1^2 - v_2^2}{2a} = \dfrac{0^2 - 0.02^2}{2 \times 2} = 0.0001m
 \]
 Đoạn đường chuyển động đều:
 \[
@@ -172,22 +172,22 @@ Thời gian giảm tốc:
 \]
 Thời gian chuyển động đều:
 \[
-    t_{v2} = \frac{L_{v2}}{v_2} = \frac{0.0999}{0.02} = 4.995 \text{ s}
+    t_{v2} = \dfrac{L_{v2}}{v_2} = \dfrac{0.0999}{0.02} = 4.995 \text{ s}
 \]
 \subsection{Quick return}
 Thời gian tăng tốc:
 \[
-    t_{a3} = \frac{v_3 - v_2}{a} = \frac{0.12 - 0.02}{2} = 0.05s
+    t_{a3} = \dfrac{v_3 - v_2}{a} = \dfrac{0.12 - 0.02}{2} = 0.05s
 \]
 
 Đoạn đường tăng tốc:
 \[
-    L_{a3} = \frac{v_3^2 - v_2^2}{2a} = \frac{0.12^2 - 0.02^2}{2 \times 2} = 0.0035m
+    L_{a3} = \dfrac{v_3^2 - v_2^2}{2a} = \dfrac{0.12^2 - 0.02^2}{2 \times 2} = 0.0035m
 \]
 
 Đoạn đường giảm tốc:
 \[
-    L_{d3} = \frac{v_3^2 - 0^2}{2a} = \frac{0.12^2 - 0^2}{2 \times 2} = 0.0036m
+    L_{d3} = \dfrac{v_3^2 - 0^2}{2a} = \dfrac{0.12^2 - 0^2}{2 \times 2} = 0.0036m
 \]
 
 Đoạn đường chuyển động đều:
@@ -197,12 +197,12 @@ Thời gian tăng tốc:
 
 Thời gian chuyển động đều:
 \[
-    t_{v3} = \frac{L_{v3}}{v_3} = \frac{0.2429}{0.12} = 2.02417 \text{ s}
+    t_{v3} = \dfrac{L_{v3}}{v_3} = \dfrac{0.2429}{0.12} = 2.02417 \text{ s}
 \]
 
 Thời gian giảm tốc:
 \[
-    t_{d3} = \frac{v_3 - 0}{a} = \frac{0.12 - 0}{2} = 0.06s
+    t_{d3} = \dfrac{v_3 - 0}{a} = \dfrac{0.12 - 0}{2} = 0.06s
 \]
 
 \subsection{Bảng tổng hợp thời gian và quãng đường các giai đoạn}
@@ -275,17 +275,17 @@ Ta có thông số momen quán tính rotor động cơ:
     J_0 = J_M = 0.192 \times 10^{-4} (kg.m^2)
 \]
 \[
-    \Rightarrow \text{Tỷ lệ momen quán tính: } \frac{J_L}{J_M} = \frac{6.16 \times 10^{-5}}{0.192 \times 10^{-4}} = 3.208
+    \Rightarrow \text{Tỷ lệ momen quán tính: } \dfrac{J_L}{J_M} = \dfrac{6.16 \times 10^{-5}}{0.192 \times 10^{-4}} = 3.208
 \]
 
 Với $T_a$ được tính như sau:
 \[
-    T_a = \frac{(J_L + J_0)N_{max}}{9.55t} = \frac{(6.16 \times 10^{-5} + J_0)N_{max}}{9.55t} = \frac{(6.16 \times 10^{-5} + J_0)\Delta N_{max}}{9.55\Delta t}
+    T_a = \dfrac{(J_L + J_0)N_{max}}{9.55t} = \dfrac{(6.16 \times 10^{-5} + J_0)N_{max}}{9.55t} = \dfrac{(6.16 \times 10^{-5} + J_0)\Delta N_{max}}{9.55\Delta t}
 \]
 
 Xét thời gian tăng tốc ngắn nhất (worst case) là $\Delta t = 0.05s$ và $\Delta N_{max} = 1440$ rpm của giai đoạn chuyển từ Cutting feed sang Quick return:
 \[
-    T_a = \frac{(6.16 \times 10^{-5} + 0.192 \times 10^{-4}) \times 1440}{9.55 \times 0.05} = 0.24367 Nm
+    T_a = \dfrac{(6.16 \times 10^{-5} + 0.192 \times 10^{-4}) \times 1440}{9.55 \times 0.05} = 0.24367 Nm
 \]
 \[
     \Rightarrow T_{max2} = T_L + T_a = 4.16 \times 10^{-4} + 0.24367 = 0.244086 \text{ Nm}
@@ -297,10 +297,10 @@ Momen tải đỉnh là:
 \section{Tính momen RMS}
 Momen RMS được tính theo công thức với các giá trị đã có trên bảng tổng hợp thời gian và quãng đường các giai đoạn:
 \[
-    T_{RMS} = \sqrt{\frac{(T_{a1} + T_{L1})^2t_{a1} + T_{L1}^2 \cdot t_{v1} + (T_{d1} - T_{L1})^2t_{d1} + T_{L2}^2 \cdot t_{v2} + (T_{a3} + T_{L3})^2t_{a3} + T_{L3}^2 \cdot t_{v3} + (T_{d3} - T_{L3})^2t_{d3}}{t_{total}}}
+    T_{RMS} = \sqrt{\dfrac{(T_{a1} + T_{L1})^2t_{a1} + T_{L1}^2 \cdot t_{v1} + (T_{d1} - T_{L1})^2t_{d1} + T_{L2}^2 \cdot t_{v2} + (T_{a3} + T_{L3})^2t_{a3} + T_{L3}^2 \cdot t_{v3} + (T_{d3} - T_{L3})^2t_{d3}}{t_{total}}}
 \]
 \[
-    = \sqrt{\frac{(0 + 4.16 \times 10^{-4})^2 \cdot 0.05 + (4.16 \times 10^{-4})^2 \cdot 1.451 + (0 - 4.16 \times 10^{-4})^2 \cdot 0.04 + (0.1773)^2 \cdot 4.995 + (0 + 4.16 \times 10^{-4})^2 \cdot 0.05 + (4.16 \times 10^{-4})^2 \cdot 2.02417 + (0 - 4.16 \times 10^{-4})^2 \cdot 0.06}{8.68017}}
+    = \sqrt{\dfrac{(0 + 4.16 \times 10^{-4})^2 \cdot 0.05 + (4.16 \times 10^{-4})^2 \cdot 1.451 + (0 - 4.16 \times 10^{-4})^2 \cdot 0.04 + (0.1773)^2 \cdot 4.995 + (0 + 4.16 \times 10^{-4})^2 \cdot 0.05 + (4.16 \times 10^{-4})^2 \cdot 2.02417 + (0 - 4.16 \times 10^{-4})^2 \cdot 0.06}{8.68017}}
 \]
 \[
     = 0.1197 \text{ Nm}
