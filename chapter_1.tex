@@ -1,0 +1,324 @@
+\chapter*{Đề bài}
+Cho một máy khoan cần điều khiển chuyển động theo một quỹ đạo xác định như hình dưới đây với các thông số: 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/debai.png}
+    \caption{Mô tả chuyển động của máy khoan}
+\end{figure}
+
+\begin{enumerate}
+    \item Thông số chuyển động:
+    \begin{itemize}
+        \item Tốc độ tiến nhanh: $v_1 = 100$ mm/s
+        \item Tốc độ cắt (gia công): $v_2 = 20$ mm/s
+        \item Tốc độ rút nhanh: $v_3 = 120$ mm/s
+        \item Gia tốc / giảm tốc: $a = 2000$ mm/s$^2$
+    \end{itemize}
+    
+    \item Hành trình di chuyển:
+    \begin{itemize}
+        \item $L_1$ (tiến nhanh): 150 mm
+        \item $L_2$ (cắt): 100 mm
+        \item $L_3$ (rút nhanh): 250 mm
+    \end{itemize}
+    
+    \item Thông số trục vít me bi (Lead Screw Specifications):
+    \begin{itemize}
+        \item Đường kính: $d = 20$ mm
+        \item Bước vít (Lead): $P = 5$ mm/vòng
+        \item Chiều dài vít: $L = 400$ mm
+        \item Vật liệu: Thép SCM440 ($\rho = 7850$ kg/m$^3$)
+        \item Hiệu suất truyền động: $\eta = 0.9$
+    \end{itemize}
+    
+    \item Thông số tải (Load Parameters):
+    \begin{itemize}
+        \item Khối lượng bàn trượt: $m = 12$ kg
+        \item Lực cắt khi khoan: $F_c = 200$ N
+        \item Hệ số ma sát ray trượt tuyến tính: $\mu = 0.004$
+        \item Momen quán tính khớp nối: $J\_coupling = 0.05 \times 10^{-4}$ kg·m$^2$
+    \end{itemize}
+\end{enumerate}
+
+\section*{Yêu cầu}
+\begin{enumerate}
+    \item Chọn động cơ phù hợp cho ứng dụng trên.
+    \item Vẽ sơ đồ điều khiển tích hợp PLC.
+    \item Vẽ lưu đồ thuật toán điều khiển (flowchart).
+\end{enumerate}
+
+\chapter{Chọn động cơ phù hợp cho ứng dụng trên}
+\section{Tính toán vận tốc tối đa động cơ cần hoạt động}
+Dựa trên mô tả chuyển động, ta thấy vận tốc nhanh nhất tương ứng với quick return là 120 mm/s. Đó chính là tốc độ tối đa của động cơ.
+\[
+    N_{max} = \frac{60v_L}{p} = \frac{60 \times 0.12}{\frac{5}{1000}} = 1440 \text{ rpm}
+\]
+\section{Tính toán momen quán tính quy về trục động cơ}
+Để tính toán momen quán tính quy về trục động cơ, ta cần tính toán momen quán tính của từng thành phần và quy về trục động cơ thông qua hệ số truyền động.
+\begin{itemize}
+    \item Momen quán tính vít me (trục dẫn):
+    \[
+        J_{vitme} = \frac{\pi}{32}\rho.L.d^4 = \frac{\pi}{32} \times 7850 \times 0.4 \times 0.02^4 = 4.9 \times 10^{-5} (kg.m^2)
+    \]
+    
+    \item Momen quán tính bàn trượt (di chuyển tuyến tính):
+    \[
+        J_{ban\_truot} = m.\left(\frac{p}{2\pi}\right)^2 = 12.\left(\frac{\frac{5}{1000}}{2\pi}\right)^2 = 7.6 \times 10^{-6} (kg.m^2)
+    \]
+    
+    \item Momen quán tính coupling:
+    \[
+        J_{coupling} = 0.05 \times 10^{-4} (kg.m^2) \text{(đã có từ đề bài)}
+    \]
+    \item Momen quán tính tổng quy về trục động cơ:
+    \[
+        J_{L} = J_{vitme} + J_{ban\_truot} + J_{coupling} = 4.9 \times 10^{-5} + 7.6 \times 10^{-6} + 0.05 \times 10^{-4} = 6.16 \times 10^{-5} (kg.m^2)
+    \]
+\end{itemize}
+\section{Tính momen tải cho các pha}
+Công thức tính momen tải trục vitme (bỏ qua preload):
+    \[
+        T_L = \frac{P}{2\pi} \cdot \frac{F}{\eta}
+    \]
+Công thức tính giá trị lực tác dụng:
+    \[
+        F = F_A + \mu mg = F_A + 0.4701 \text{ (N)}
+    \]
+Lần lượt tính các giá trị trên cho từng giai đoạn chuyển động:
+\begin{itemize}
+    \item Pha tiến nhanh và lùi về: $F_A = 0$ (N)
+    \[
+        \Rightarrow F = F_A + 0.4701 = 0.4701 \text{ (N)}
+    \]
+    \[
+        \Rightarrow T_L = \frac{5/1000}{2\pi} \cdot \frac{0.4701}{0.9} = 4.16 \times 10^{-4} \text{ Nm}
+    \]
+    
+    \item Pha cắt: $F_A = F_c = 200$ N
+    \[
+        \Rightarrow F = F_A + 0.4701 = 200 + 0.4701 = 200.4701 \text{ (N)}
+    \]
+    \[
+        \Rightarrow T_L = \frac{5/1000}{2\pi} \cdot \frac{200.4701}{0.9} = 0.1773 \text{ Nm}
+    \]
+\end{itemize}
+
+\textbf{Momen tải đỉnh}
+\[
+    T_{max} = T_L + T_a \text{   (Nm)}
+\]
+Trong đó:
+\begin{itemize}
+    \item $T_L$ là momen tải trục vitme tính toán ở trên.
+    \item $T_a$ là momen tải tăng tốc:
+    \[
+        T_a = \frac{(J_L + J_0)N_{max}}{9.55t} = \frac{(6.16 \times 10^{-5} + J_0)N_{max}}{9.55t}
+    \]
+    
+\end{itemize}
+
+Tính toán cho các giai đoạn:
+\begin{itemize}
+    \item Cutting feed: $T_a = 0$ Nm $\Rightarrow T_{max1} = T_{L_{max}} = 0.1773$ Nm
+    \item Quick feed/Quick return: $T_{max2} = T_L + T_a = 4.16 \times 10^{-4} + T_a$ 
+\end{itemize}
+
+\section{Tính toán thời gian các giai đoạn}
+\begin{itemize}
+    \item Quick feed (tiến nhanh): vận tốc tăng dần đều $v_{a1}$, vận tốc đều $v_1$, vận tốc giảm dần đều $v_{d1}$
+    \item Cutting feed (cắt): vận tốc đều $v_2$, vận tốc giảm dần đều $v_{d2}$
+    \item Return feed (rút nhanh): vận tốc tăng dần đều $v_{a3}$, vận tốc đều $v_3$, vận tốc giảm dần đều $v_{d3}$
+\end{itemize}
+\subsection{Quick feed}
+Thời gian tăng tốc:
+\[
+    t_{a1} = \frac{v_1 - 0}{a} = \frac{0.1 - 0}{2} = 0.05s
+\]
+
+Đoạn đường tăng tốc:
+\[
+    L_{a1} = \frac{v_1^2 - 0^2}{2a} = \frac{0.1^2 - 0}{2 \times 2} = 0.0025m
+\]
+Thời gian giảm tốc:
+\[
+    t_{d1} = \frac{v_1 - v_2}{a} = \frac{0.1 - 0.02}{2} = 0.04s
+\]
+Đoạn đường giảm tốc:
+\[
+    L_{d1} = \frac{v_2^2 - v_1^2}{2a} = \frac{0.02^2 - 0.1^2}{2 \times 2} = 0.0024m
+\]
+
+Đoạn đường chuyển động đều:
+\[
+    L_{v1} = L_1 - L_{a1} - L_{d1} = 0.15 - 0.0025 - 0.0024 = 0.1451 \text{ m}
+\]
+
+Thời gian chuyển động đều:
+\[
+    t_{v1} = \frac{L_{v1}}{v_1} = \frac{0.1451}{0.1} = 1.451 \text{ s}
+\]
+\subsection{Cutting feed}
+Thời gian giảm tốc:
+\[
+    t_{d2} = \frac{v_2 - v_1}{a} = \frac{0.02 - 0}{2} = 0.01s
+\]
+Đoạn đường giảm tốc:
+\[
+    L_{d2} = \frac{v_1^2 - v_2^2}{2a} = \frac{0^2 - 0.02^2}{2 \times 2} = 0.0001m
+\]
+Đoạn đường chuyển động đều:
+\[
+    L_{v2} = L_2 - L_{d2} = 0.1 - 0.0001 = 0.0999 \text{ m}
+\]
+Thời gian chuyển động đều:
+\[
+    t_{v2} = \frac{L_{v2}}{v_2} = \frac{0.0999}{0.02} = 4.995 \text{ s}
+\]
+\subsection{Quick return}
+Thời gian tăng tốc:
+\[
+    t_{a3} = \frac{v_3 - v_2}{a} = \frac{0.12 - 0.02}{2} = 0.05s
+\]
+
+Đoạn đường tăng tốc:
+\[
+    L_{a3} = \frac{v_3^2 - v_2^2}{2a} = \frac{0.12^2 - 0.02^2}{2 \times 2} = 0.0035m
+\]
+
+Đoạn đường giảm tốc:
+\[
+    L_{d3} = \frac{v_3^2 - 0^2}{2a} = \frac{0.12^2 - 0^2}{2 \times 2} = 0.0036m
+\]
+
+Đoạn đường chuyển động đều:
+\[
+    L_{v3} = L_3 - L_{a3} - L_{d3} = 0.25 - 0.0035 - 0.0036 = 0.2429 \text{ m}
+\]
+
+Thời gian chuyển động đều:
+\[
+    t_{v3} = \frac{L_{v3}}{v_3} = \frac{0.2429}{0.12} = 2.02417 \text{ s}
+\]
+
+Thời gian giảm tốc:
+\[
+    t_{d3} = \frac{v_3 - 0}{a} = \frac{0.12 - 0}{2} = 0.06s
+\]
+
+\subsection{Bảng tổng hợp thời gian và quãng đường các giai đoạn}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Giai đoạn} & \textbf{Thời gian (s)} & \textbf{Quãng đường (m)} & \textbf{Vận tốc (m/s)} \\
+        \hline
+        \multicolumn{4}{|c|}{\textbf{Quick feed (Tiến nhanh)}} \\
+        \hline
+        Tăng tốc & $t_{a1} = 0.05$ & $L_{a1} = 0.0025$ & $0 \to 0.1$ \\
+        \hline
+        Chuyển động đều & $t_{v1} = 1.451$ & $L_{v1} = 0.1451$ & $v_1 = 0.1$ \\
+        \hline
+        Giảm tốc & $t_{d1} = 0.04$ & $L_{d1} = 0.0024$ & $0.1 \to 0.02$ \\
+        \hline
+        \textbf{Tổng} & \textbf{1.541} & \textbf{0.15} & \\
+        \hline
+        \multicolumn{4}{|c|}{\textbf{Cutting feed (Cắt)}} \\
+        \hline
+        Chuyển động đều & $t_{v2} = 4.995$ & $L_{v2} = 0.0999$ & $v_2 = 0.02$ \\
+        \hline
+        Giảm tốc & $t_{d2} = 0.01$ & $L_{d2} = 0.0001$ & $0.02 \to 0$ \\
+        \hline
+        \textbf{Tổng} & \textbf{5.005} & \textbf{0.1} & \\
+        \hline
+        \multicolumn{4}{|c|}{\textbf{Quick return (Rút nhanh)}} \\
+        \hline
+        Tăng tốc & $t_{a3} = 0.05$ & $L_{a3} = 0.0035$ & $0.02 \to 0.12$ \\
+        \hline
+        Chuyển động đều & $t_{v3} = 2.02417$ & $L_{v3} = 0.2429$ & $v_3 = 0.12$ \\
+        \hline
+        Giảm tốc & $t_{d3} = 0.06$ & $L_{d3} = 0.0036$ & $0.12 \to 0$ \\
+        \hline
+        \textbf{Tổng} & \textbf{2.13417} & \textbf{0.25} & \\
+        \hline
+        \multicolumn{4}{|c|}{\textbf{TỔNG TOÀN BỘ CHU KỲ}} \\
+        \hline
+        \textbf{Tổng cộng} & \textbf{8.68017 s} & \textbf{0.5 m} & \\
+        \hline
+    \end{tabular}
+    \caption{Bảng tổng hợp thời gian và quãng đường các giai đoạn chuyển động}
+\end{table}
+\cleardoublepage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/motion_profile.png}
+    \caption{Motion Profile thiết kế }
+\end{figure}
+\section{Lựa chọn động cơ}
+Chọn trước động cơ ECMA-C10602ES của hãng Delta
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/delta.png}
+    \caption{Bìa catalog của động cơ Servo hãng Delta}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/ECMA.png}
+    \caption{Động cơ Servo dòng ECMA}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/chose.png}
+    \caption{Thông số momen quán tính của động cơ được chọn}
+\end{figure}
+Ta có thông số momen quán tính rotor động cơ: 
+\[
+    J_0 = J_M = 0.192 \times 10^{-4} (kg.m^2)
+\]
+\[
+    \Rightarrow \text{Tỷ lệ momen quán tính: } \frac{J_L}{J_M} = \frac{6.16 \times 10^{-5}}{0.192 \times 10^{-4}} = 3.208
+\]
+
+Với $T_a$ được tính như sau:
+\[
+    T_a = \frac{(J_L + J_0)N_{max}}{9.55t} = \frac{(6.16 \times 10^{-5} + J_0)N_{max}}{9.55t} = \frac{(6.16 \times 10^{-5} + J_0)\Delta N_{max}}{9.55\Delta t}
+\]
+
+Xét thời gian tăng tốc ngắn nhất (worst case) là $\Delta t = 0.05s$ và $\Delta N_{max} = 1440$ rpm của giai đoạn chuyển từ Cutting feed sang Quick return:
+\[
+    T_a = \frac{(6.16 \times 10^{-5} + 0.192 \times 10^{-4}) \times 1440}{9.55 \times 0.05} = 0.24367 Nm
+\]
+\[
+    \Rightarrow T_{max2} = T_L + T_a = 4.16 \times 10^{-4} + 0.24367 = 0.244086 \text{ Nm}
+\]
+Momen tải đỉnh là:
+\[
+    \Rightarrow T_M = T_{max2} = 0.244086 \text{ Nm}
+\]
+\section{Tính momen RMS}
+Momen RMS được tính theo công thức với các giá trị đã có trên bảng tổng hợp thời gian và quãng đường các giai đoạn:
+\[
+    T_{RMS} = \sqrt{\frac{(T_{a1} + T_{L1})^2t_{a1} + T_{L1}^2 \cdot t_{v1} + (T_{d1} - T_{L1})^2t_{d1} + T_{L2}^2 \cdot t_{v2} + (T_{a3} + T_{L3})^2t_{a3} + T_{L3}^2 \cdot t_{v3} + (T_{d3} - T_{L3})^2t_{d3}}{t_{total}}}
+\]
+\[
+    = \sqrt{\frac{(0 + 4.16 \times 10^{-4})^2 \cdot 0.05 + (4.16 \times 10^{-4})^2 \cdot 1.451 + (0 - 4.16 \times 10^{-4})^2 \cdot 0.04 + (0.1773)^2 \cdot 4.995 + (0 + 4.16 \times 10^{-4})^2 \cdot 0.05 + (4.16 \times 10^{-4})^2 \cdot 2.02417 + (0 - 4.16 \times 10^{-4})^2 \cdot 0.06}{8.68017}}
+\]
+\[
+    = 0.1197 \text{ Nm}
+\]
+Torque tối đa tác dụng lên motor trong quá trình chuyển động:
+\[
+    T'_{MAX} = T_{max2} = T_a + T_L = 0.244086 + 0.1773 = 0.421386 \text{ (N.m)}
+\]
+\section{Kết luận}
+Sau quá trình lựa chọn động cơ và tính toán, ta thấy được $T_{RMS} = 0.1197 \text{ Nm}$ bé hơn $T_{rated} = 0.64 \text{ Nm}$ và $T'_{MAX} = 0.421386 \text{ Nm}$ bé hơn $T_{maximum} = 1.96 \text{ Nm}$ từ catalog, do đó động cơ ECMA-C10602ES của hãng Delta là phù hợp cho ứng dụng trên. \\
+Để điều khiển động cơ, ta sử dụng driver ASD-B2-0221- B của hãng Delta.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/driver.png}
+    \caption{Driver được chọn}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/driver_name.png}
+    \caption{Quy ước tên driver}
+\end{figure}

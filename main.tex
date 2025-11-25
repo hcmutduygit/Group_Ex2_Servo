@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper]{report}
+\input{library}
+\addbibresource{references.bib} 
+%Header
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=12mm, height=12mm]{pictures/hcmut.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily Trường Đại học Bách khoa - ĐHQG TPHCM}\\
+		\textbf{\bf \ttfamily Khoa Cơ khí - Bộ môn Cơ điện tử}
+	\end{tabular} 	
+ \end{tabular}
+}
+\fancyhead[R]{
+	{\tiny \bf \quad} % Khoảng trắng nhỏ trong header bên phải
+}
+
+%Footer
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Điều khiển các hệ thống Servo trong công nghiệp}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/20}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+\begin{document}
+    \include{titlepage}
+    \tableofcontents
+    \cleardoublepage 
+    \input{chapter_1.tex}
+
+    \nocite{*}
+        \printbibliography[heading=bibintoc]
+    
+\end{document}
