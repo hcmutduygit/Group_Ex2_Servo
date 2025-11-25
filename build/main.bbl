@@ -1,0 +1,55 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{DeltaASDA}{manual}{}{}
+      \name{author}{1}{}{%
+        {{hash=b314bb67850973f9ec55207eb86aafb0}{%
+           family={{Delta Electronics, Inc.}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{fullhash}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{fullhashraw}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{bibnamehash}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{authorbibnamehash}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{authornamehash}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{authorfullhash}{b314bb67850973f9ec55207eb86aafb0}
+      \strng{authorfullhashraw}{b314bb67850973f9ec55207eb86aafb0}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{note}{Accessed: 2025-11-25}
+      \field{title}{ASDA-B2 Series AC Servo Drive and Motor User Manual}
+      \field{year}{2021}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.deltaww.com/IA/downloadcenter/catalogue/2.Motion/ASDA-B2/DELTA_IA-ASDA_ASDA-B2_C_EN_20211018_Web.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.deltaww.com/IA/downloadcenter/catalogue/2.Motion/ASDA-B2/DELTA_IA-ASDA_ASDA-B2_C_EN_20211018_Web.pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

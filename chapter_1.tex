@@ -76,15 +76,15 @@ Dựa trên mô tả chuyển động, ta thấy vận tốc nhanh nhất tươn
     \]
 \end{itemize}
 \section{Tính momen tải cho các pha}
-Công thức tính momen tải trục vitme (bỏ qua preload):
+\hspace*{0.6cm}Công thức tính momen tải trục vitme (bỏ qua preload):
     \[
         T_L = \dfrac{P}{2\pi} \cdot \dfrac{F}{\eta}
     \]
-Công thức tính giá trị lực tác dụng:
+\hspace*{0.6cm}Công thức tính giá trị lực tác dụng:
     \[
         F = F_A + \mu mg = F_A + 0.4701 \text{ (N)}
     \]
-Lần lượt tính các giá trị trên cho từng giai đoạn chuyển động:
+\hspace*{0.6cm}Lần lượt tính các giá trị trên cho từng giai đoạn chuyển động:
 \begin{itemize}
     \item Pha tiến nhanh và lùi về: $F_A = 0$ (N)
     \[
@@ -107,7 +107,7 @@ Lần lượt tính các giá trị trên cho từng giai đoạn chuyển độ
 \[
     T_{max} = T_L + T_a \text{   (Nm)}
 \]
-Trong đó:
+\hspace*{0.6cm}Trong đó:
 \begin{itemize}
     \item $T_L$ là momen tải trục vitme tính toán ở trên.
     \item $T_a$ là momen tải tăng tốc:
@@ -130,7 +130,7 @@ Tính toán cho các giai đoạn:
     \item Return feed (rút nhanh): vận tốc tăng dần đều $v_{a3}$, vận tốc đều $v_3$, vận tốc giảm dần đều $v_{d3}$
 \end{itemize}
 \subsection{Quick feed}
-Thời gian tăng tốc:
+\hspace*{0.6cm}Thời gian tăng tốc:
 \[
     t_{a1} = \dfrac{v_1 - 0}{a} = \dfrac{0.1 - 0}{2} = 0.05s
 \]
@@ -139,11 +139,11 @@ Thời gian tăng tốc:
 \[
     L_{a1} = \dfrac{v_1^2 - 0^2}{2a} = \dfrac{0.1^2 - 0}{2 \times 2} = 0.0025m
 \]
-Thời gian giảm tốc:
+\hspace*{0.6cm}Thời gian giảm tốc:
 \[
     t_{d1} = \dfrac{v_1 - v_2}{a} = \dfrac{0.1 - 0.02}{2} = 0.04s
 \]
-Đoạn đường giảm tốc:
+\hspace*{0.6cm}Đoạn đường giảm tốc:
 \[
     L_{d1} = \dfrac{v_2^2 - v_1^2}{2a} = \dfrac{0.02^2 - 0.1^2}{2 \times 2} = 0.0024m
 \]
@@ -158,24 +158,24 @@ Thời gian chuyển động đều:
     t_{v1} = \dfrac{L_{v1}}{v_1} = \dfrac{0.1451}{0.1} = 1.451 \text{ s}
 \]
 \subsection{Cutting feed}
-Thời gian giảm tốc:
+\hspace*{0.6cm}Thời gian giảm tốc:
 \[
     t_{d2} = \dfrac{v_2 - v_1}{a} = \dfrac{0.02 - 0}{2} = 0.01s
 \]
-Đoạn đường giảm tốc:
+\hspace*{0.6cm}Đoạn đường giảm tốc:
 \[
     L_{d2} = \dfrac{v_1^2 - v_2^2}{2a} = \dfrac{0^2 - 0.02^2}{2 \times 2} = 0.0001m
 \]
-Đoạn đường chuyển động đều:
+\hspace*{0.6cm}Đoạn đường chuyển động đều:
 \[
     L_{v2} = L_2 - L_{d2} = 0.1 - 0.0001 = 0.0999 \text{ m}
 \]
-Thời gian chuyển động đều:
+\hspace*{0.6cm}Thời gian chuyển động đều:
 \[
     t_{v2} = \dfrac{L_{v2}}{v_2} = \dfrac{0.0999}{0.02} = 4.995 \text{ s}
 \]
 \subsection{Quick return}
-Thời gian tăng tốc:
+\hspace*{0.6cm}Thời gian tăng tốc:
 \[
     t_{a3} = \dfrac{v_3 - v_2}{a} = \dfrac{0.12 - 0.02}{2} = 0.05s
 \]
@@ -254,7 +254,7 @@ Thời gian giảm tốc:
     \caption{Motion Profile thiết kế }
 \end{figure}
 \section{Lựa chọn động cơ}
-Chọn trước động cơ ECMA-C10602ES của hãng Delta
+\hspace*{0.6cm}Chọn trước động cơ ECMA-C10602ES của hãng Delta
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{pictures/delta.png}
@@ -290,12 +290,12 @@ Xét thời gian tăng tốc ngắn nhất (worst case) là $\Delta t = 0.05s$ v
 \[
     \Rightarrow T_{max2} = T_L + T_a = 4.16 \times 10^{-4} + 0.24367 = 0.244086 \text{ Nm}
 \]
-Momen tải đỉnh là:
+\hspace*{0.6cm}Momen tải đỉnh là:
 \[
     \Rightarrow T_M = T_{max2} = 0.244086 \text{ Nm}
 \]
 \section{Tính momen RMS}
-Momen RMS được tính theo công thức với các giá trị đã có trên bảng tổng hợp thời gian và quãng đường các giai đoạn:
+\hspace*{0.6cm}Momen RMS được tính theo công thức với các giá trị đã có trên bảng tổng hợp thời gian và quãng đường các giai đoạn:
 \[
     T_{RMS} = \sqrt{\dfrac{(T_{a1} + T_{L1})^2t_{a1} + T_{L1}^2 \cdot t_{v1} + (T_{d1} - T_{L1})^2t_{d1} + T_{L2}^2 \cdot t_{v2} + (T_{a3} + T_{L3})^2t_{a3} + T_{L3}^2 \cdot t_{v3} + (T_{d3} - T_{L3})^2t_{d3}}{t_{total}}}
 \]
